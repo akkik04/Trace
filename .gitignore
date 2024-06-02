@@ -1,3 +1,16 @@
+# Terraform files
+*.tfstate
+*.tfstate.backup
+*.tfplan
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
