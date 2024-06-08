@@ -5,11 +5,11 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terraform
-
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
 .terraform.lock.hcl
+terraform.tfvars
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
