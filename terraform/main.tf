@@ -4,7 +4,7 @@ provider "aws" {
 
 module "aws_s3" {
   source           = "./modules/aws-s3"
-  main_bucket_name = "flow-project-main"
+  main_bucket_name = var.main_bucket_name
 }
 
 module "aws_ecr" {
