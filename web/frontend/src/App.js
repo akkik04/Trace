@@ -25,7 +25,7 @@ function App() {
     setLogMessage(logMessage);
 
     try {
-      const response = await fetch('http://localhost:3000/logs', {
+      const response = await fetch('http://localhost:8000/logs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

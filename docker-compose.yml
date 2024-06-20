@@ -1,0 +1,12 @@
+version: '1'
+services:
+  flow-node-backend:
+    build:
+      context: ./web/backend
+    ports:
+      - "8000:8000"
+  # flow-log-collector-microservice:
+  #   build:
+  #     context: ./services/log-collector
+  #   ports:
+  #     - "8080:8080"
