@@ -12,7 +12,7 @@ app.post('/logs', (req, res) => {
     const logMessage = req.body.message;
     
     try{
-        axios.post('http://host.docker.internal:8080/log_collector', {
+        axios.post('http://log-collector-microservice:8080/log_collector', {
             message: logMessage
         });
     }catch (error) {
