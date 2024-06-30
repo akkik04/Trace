@@ -25,7 +25,7 @@ function App() {
     setLogMessage(logMessage);
 
     try {
-      const response = await fetch('http://localhost:8000/logs', {
+      const response = await fetch(process.env.REACT_APP_NODE_BACKEND_URI, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
