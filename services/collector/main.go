@@ -1,14 +1,24 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
+	"os"
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/akkik04/Trace/services/proto"
+	"github.com/joho/godotenv"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
+
+var client proto.LogServiceClient
 
 // create a struct to represent the log entry.
 type LogEntry struct {
@@ -77,6 +87,21 @@ func logsHandler(w http.ResponseWriter, r *http.Request) {
 
 	// store the log entry in the in-memory data store.
 	logStore = append(logStore, logEntry)
+	res, err := client.SendLog(context.Background(), &proto.LogEntry{
+		Ip:        logEntry.IP,
+		User:      logEntry.User,
+		Timestamp: logEntry.Timestamp.String(),
+		Method:    logEntry.Method,
+		Endpoint:  logEntry.Endpoint,
+		Protocol:  logEntry.Protocol,
+		Status:    int32(logEntry.Status),
+		Size:      int32(logEntry.Size),
+	})
+	if err != nil {
+		http.Error(w, "Error sending log to ingestor", http.StatusInternalServerError)
+		return
+	}
+	fmt.Printf("Response from ingestor: %v\n", res.GetMessage())
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -85,7 +110,7 @@ func extractLogMetrics(log string) (LogEntry, error) {
 
 	// use the regex to extract the metrics.
 	matches := logRegex.FindStringSubmatch(log)
-	
+
 	if matches == nil {
 		return LogEntry{}, fmt.Errorf("log format not recognized")
 	}
@@ -124,8 +149,21 @@ func extractLogMetrics(log string) (LogEntry, error) {
 // main.
 func main() {
 
+	// load the environment variables.
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
+	}
+	ingestor := os.Getenv("LOG_INGESTOR_MICROSERVICE_URI")
+
 	// run the /log_collector route on port 8080.
 	http.HandleFunc("/log_collector", logsHandler)
 	fmt.Println("Go microservice running on port 8080")
-	http.ListenAndServe(":8080", nil)
+	conn, err := grpc.NewClient(ingestor, grpc.WithTransportCredentials(insecure.NewCredentials()))
+
+	if err != nil {
+		panic(err)
+	}
+	client = proto.NewLogServiceClient(conn)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

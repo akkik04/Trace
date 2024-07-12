@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+
+service LogService {
+    rpc SendLog(LogEntry) returns (LogResponse);
+}
+
+message LogEntry {
+    string ip = 1;
+    string user = 2;
+    string timestamp = 3;
+    string method = 4;
+    string endpoint = 5;
+    string protocol = 6;
+    int32 status = 7;
+    int32 size = 8;
+}
+
+message LogResponse {
+    string message = 1;
+}

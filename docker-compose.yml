@@ -5,8 +5,19 @@ services:
       context: ./web/backend
     ports:
       - "8000:8000"
-  log-collector-microservice:
+  collector-microservice:
     build:
-      context: ./services/log-collector
+      context: ./services
+      dockerfile: Dockerfile
+      args:
+        SERVICE: collector
     ports:
       - "8080:8080"
+  ingestor-microservice:
+    build:
+      context: ./services
+      dockerfile: Dockerfile
+      args:
+        SERVICE: ingestor
+    ports:
+      - "8082:8082"
