@@ -9,9 +9,10 @@ module "aws_s3" {
   lambda_func_name = var.lambda_func_name
 }
 
-# module "aws_ecr" {
-#   source = "./modules/aws-ecr"
-# }
+module "aws_ecr" {
+  source           = "./modules/ecr"
+  repository_names = var.repository_names
+}
 
 # module "aws_eks" {
 #   source = "./modules/aws-eks"

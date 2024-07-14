@@ -47,3 +47,9 @@ variable "lambda_handler" {
   description = "The handler for the lambda function"
   type        = string
 }
+
+variable "repository_names" {
+  type        = list(string)
+  description = "List of ECR repository names"
+
+}
