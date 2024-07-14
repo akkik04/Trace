@@ -1,23 +1,3 @@
-variable "aws_region" {
-  description = "The AWS region to deploy to"
-  type        = string
-}
-
-variable "main_bucket_name" {
-  description = "The name of the main S3 bucket"
-  type        = string
-}
-
-variable "log_group_name" {
-  description = "The name of the log group to create"
-  type        = string
-}
-
-variable "log_stream_name" {
-  description = "The name of the log stream to create"
-  type        = string
-}
-
 variable "lambda_func_name" {
   description = "The name of the lambda function"
   type        = string
@@ -34,7 +14,7 @@ variable "lambda_policy_name" {
 }
 
 variable "lambda_filename" {
-  description = "The filename of the lambda function"
+  description = "The .zip filename of the lambda function"
   type        = string
 }
 
