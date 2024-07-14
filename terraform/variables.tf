@@ -8,6 +8,11 @@ variable "main_bucket_name" {
   type        = string
 }
 
+variable "lambda_func_arn" {
+  description = "The ARN of the Lambda function to be triggered"
+  type        = string
+}
+
 variable "log_group_name" {
   description = "The name of the log group to create"
   type        = string

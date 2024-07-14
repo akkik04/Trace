@@ -76,7 +76,8 @@ resource "aws_lambda_function" "lambda_func" {
   function_name    = var.lambda_func_name
   runtime          = "python3.12"
   role             = aws_iam_role.lambda_exec_role.arn
-  handler          = "index.lambda_handler"
+  handler          = var.lambda_handler
   filename         = data.archive_file.lambda_zip.output_path
   source_code_hash = filebase64sha256(data.archive_file.lambda_zip.output_path)
+  timeout          = 30
 }

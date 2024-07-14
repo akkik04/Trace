@@ -5,6 +5,8 @@ provider "aws" {
 module "aws_s3" {
   source           = "./modules/s3"
   main_bucket_name = var.main_bucket_name
+  lambda_func_arn  = module.aws_lambda.lambda_function_arn
+  lambda_func_name = var.lambda_func_name
 }
 
 # module "aws_ecr" {
