@@ -10,6 +10,7 @@ terraform.tfstate.backup
 terraform.rc
 .terraform.lock.hcl
 terraform.tfvars
+.terraform.tfstate.lock.info
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
