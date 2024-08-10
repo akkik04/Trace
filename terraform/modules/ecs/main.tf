@@ -22,6 +22,14 @@ resource "aws_ecs_task_definition" "my_task" {
           protocol      = "tcp"
         }
       ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "trace-log-group"
+          "awslogs-region"        = "ca-central-1"
+          "awslogs-stream-prefix" = "ecs"
+        }
+      }
     },
     {
       name      = "ingestor"
@@ -35,6 +43,14 @@ resource "aws_ecs_task_definition" "my_task" {
           protocol      = "tcp"
         }
       ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "trace-log-group"
+          "awslogs-region"        = "ca-central-1"
+          "awslogs-stream-prefix" = "ecs"
+        }
+      }
     }
   ])
 
