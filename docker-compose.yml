@@ -1,10 +1,5 @@
 version: '3'
 services:
-  nodejs-backend:
-    build:
-      context: ./web/backend
-    ports:
-      - "8000:8000"
   collector-microservice:
     build:
       context: ./services
