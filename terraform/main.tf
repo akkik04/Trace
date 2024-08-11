@@ -42,4 +42,6 @@ module "aws_ecs" {
   ecs_subnet_name                 = var.ecs_subnet_name
   ecs_subnet_cidr_block           = var.ecs_subnet_cidr_block
   ecs_route_table_cidr_block      = var.ecs_route_table_cidr_block
+  collector_image_digest          = var.collector_image_digest
+  ingestor_image_digest           = var.ingestor_image_digest
 }

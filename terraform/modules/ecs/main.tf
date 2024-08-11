@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "my_task" {
   container_definitions = jsonencode([
     {
       name      = "collector"
-      image     = "${var.collector_image_uri}"
+      image     = "${var.collector_image_uri}@${var.collector_image_digest}"
       memory    = 128
       essential = true
       portMappings = [
@@ -27,13 +27,13 @@ resource "aws_ecs_task_definition" "my_task" {
         options = {
           "awslogs-group"         = "trace-log-group"
           "awslogs-region"        = "ca-central-1"
-          "awslogs-stream-prefix" = "ecs"
+          "awslogs-stream-prefix" = "trace-ecs"
         }
       }
     },
     {
       name      = "ingestor"
-      image     = "${var.ingestor_image_uri}"
+      image     = "${var.ingestor_image_uri}@${var.ingestor_image_digest}"
       memory    = 128
       essential = true
       portMappings = [
@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "my_task" {
         options = {
           "awslogs-group"         = "trace-log-group"
           "awslogs-region"        = "ca-central-1"
-          "awslogs-stream-prefix" = "ecs"
+          "awslogs-stream-prefix" = "trace-ecs"
         }
       }
     }

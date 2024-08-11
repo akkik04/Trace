@@ -53,3 +53,13 @@ variable "ecs_route_table_cidr_block" {
   description = "The CIDR block for the route table."
   type        = string
 }
+
+variable "collector_image_digest" {
+  description = "The digest of the collector microservice's Docker image within AWS ECR."
+  type        = string
+}
+
+variable "ingestor_image_digest" {
+  description = "The digest of the ingestor microservice's Docker image within AWS ECR."
+  type        = string
+}
