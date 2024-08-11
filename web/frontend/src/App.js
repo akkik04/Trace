@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 function App() {
@@ -25,21 +26,19 @@ function App() {
     setLogMessage(logMessage);
 
     try {
-      const response = await fetch(process.env.REACT_APP_NODE_BACKEND_URI, {
-        method: 'POST',
+      const response = await axios.post(process.env.REACT_APP_COLLECTOR_SERVICE_URI, {
+        message: logMessage,
+        timestamp: new Date().toISOString()
+      }, {
         headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: logMessage, timestamp: new Date().toISOString() }),
+          'Content-Type': 'application/json'
+        }
       });
 
-      if (response.ok) {
-        console.log('Log sent successfully');
-      } else {
-        console.error('Failed to send log');
-      }
+      console.log('Log sent successfully.', response.data);
+
     } catch (error) {
-      console.error('Error sending log:', error);
+      console.error('Error sending log.', error);
     }
   };
 
