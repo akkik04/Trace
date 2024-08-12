@@ -38,4 +38,7 @@ Once the logs are sent to the S3 bucket, an AWS Lambda function is triggered. Th
 
 In the demo video below, we send a bunch of logs from the application simulator, which then get reflected in the CloudWatch dashboard I created, which shows the amount of CRUD operations performed in real-time. **Note:** I only created this one dashboard for the demo, but in a production environment, there would be multiple dashboards showing different metrics and insights(e.g., histograms, time-series graphs, more counters, etc...).
 
-<video controls src="assets/Trace Project Demo.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/c47cdbe5-84ce-42e6-a200-9691b73879ae
+
+
+
