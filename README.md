@@ -36,7 +36,9 @@ Once the logs are sent to the S3 bucket, an AWS Lambda function is triggered. Th
 
 ## Visuals 📸:
 
-In the demo video below, we send a bunch of logs from the application simulator, which then get reflected in the CloudWatch dashboard I created, which shows the amount of CRUD operations performed in real-time. **Note:** I only created this one dashboard for the demo, but in a production environment, there would be multiple dashboards showing different metrics and insights(e.g., histograms, time-series graphs, more counters, etc...).
+In the demo video below, we send a bunch of logs from the application simulator, which then get reflected in the CloudWatch dashboard I created, which shows the amount of CRUD operations performed in real-time. **Note:** I only created this one widget within the dashboard for the demo, but in a production environment, there would be multiple widgets within the dashboard showing different metrics and insights (e.g., histograms, time-series graphs, more counters, etc...).
+
+Moreover, the link to the deployed log-simulator frontend can be found in this repository's description 'About' section. You can't expect to see any metric visualizations/dashboards whilst running the log simulator, as I've turned off the AWS infrastructure upon finishing the POC to save costs.
 
 https://github.com/user-attachments/assets/c47cdbe5-84ce-42e6-a200-9691b73879ae
 
